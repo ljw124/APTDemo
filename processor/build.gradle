@@ -1,0 +1,20 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // 引入annotation，让注解处理器来处理注解
+    implementation project(':annotation')
+
+    // 注册注解，并对其生成META-INF的配置信息
+    compileOnly'com.google.auto.service:auto-service:1.0-rc4'
+    annotationProcessor'com.google.auto.service:auto-service:1.0-rc4'
+}
+
+// java控制台输出中文乱码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
