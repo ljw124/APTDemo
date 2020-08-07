@@ -53,8 +53,6 @@ public class ARouterProcessor extends AbstractProcessor {
     private Filer filerUtils;
 
     // 该方法主要用于一些初始化的操作，通过该方法的参数ProcessingEnvironment可以获取一些列有用的工具类
-
-
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
@@ -91,10 +89,10 @@ public class ARouterProcessor extends AbstractProcessor {
             // 获取简单类名
             String className = element.getSimpleName().toString();
             messagerUtils.printMessage(Diagnostic.Kind.NOTE, "被注解的类有：" + className);
+
             // 最终想生成的类文件名
             String finalClassName = className + "$$ARouter";
-
-            // 自动生成对应的类文件，EventBus写法（https://github.com/greenrobot/EventBus）
+            // 开始自动生成对应的类文件，EventBus写法（https://github.com/greenrobot/EventBus）
             try {
                 // 创建一个新的源文件（Class），并返回一个对象以允许写入它
                 JavaFileObject sourceFile = filerUtils.createSourceFile(packageName + "." + finalClassName);
